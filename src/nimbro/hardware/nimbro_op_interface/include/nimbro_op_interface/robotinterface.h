@@ -34,7 +34,7 @@
 #include <plot_msgs/plot_manager.h>
 #include <ros/service_server.h>
 #include <std_srvs/Empty.h>
-#include <cm730/CM730.h>
+#include <opencr/CM730.h>
 #include <ros/timer.h>
 
 // Class forward declarations
@@ -127,13 +127,13 @@ protected:
 	robotcontrol::RobotModel* m_model;
 
 	//! Our servo hardware type
-	boost::shared_ptr<cm730::DynamixelBase> m_servos;
+	boost::shared_ptr<opencr::DynamixelBase> m_servos;
 
 	//! Bulk read buffer for servo feedback
-	std::vector<cm730::BRData> m_servoData;
+	std::vector<opencr::BRData> m_servoData;
 
 	//! Bulk read buffer for CM730 feedback (e.g. IMU)
-	cm730::BRBoard m_boardData;
+	opencr::BRBoard m_boardData;
 
 	//! Robot name
 	std::string m_robotNameStr;
@@ -345,7 +345,7 @@ private:
 	void waitForRelaxedServos();
 
 	//! Our hardware driver
-	boost::shared_ptr<cm730::CM730> m_board;
+	boost::shared_ptr<opencr::CM730> m_board;
 
 	//! All servo types and generators we know about
 	std::map<std::string, robotcontrol::CommandGeneratorPtr> m_generators;

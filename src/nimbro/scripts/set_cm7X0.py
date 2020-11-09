@@ -20,7 +20,7 @@ def updateCm7X0():
     for line in result.split(os.linesep):
         serial = getCol("ATTRS{serial}=", line)
         if len(serial)==8 and "A" in serial:
-            toSavetty='SUBSYSTEMS=="usb", ENV{ID_SERIAL}=="FTDI_FT232R_USB_UART_'+serial+'", SYMLINK+="cm730", MODE="0666", OWNER="nimbro"'
+            toSavetty='SUBSYSTEMS=="usb", ATTRS{serial}=="'+serial+'", SYMLINK+="cm730", MODE="0666", OWNER="anhar"'
             data.append(serial)
             print "CM730 Serial = "+serial
         

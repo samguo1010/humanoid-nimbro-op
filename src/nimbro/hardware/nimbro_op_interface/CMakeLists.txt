@@ -3,7 +3,7 @@ project(nimbro_op_interface)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-find_package(catkin REQUIRED COMPONENTS roscpp robotcontrol cm730 servomodel plot_msgs rot_conv rc_utils message_generation rrlogger)
+find_package(catkin REQUIRED COMPONENTS roscpp robotcontrol opencr servomodel plot_msgs rot_conv rc_utils message_generation rrlogger)
 
 include_directories(include
 	${catkin_INCLUDE_DIRS}

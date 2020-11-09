@@ -6,11 +6,11 @@
 #include <pluginlib/class_list_macros.h>
 #include <robotcontrol/hw/dynamiccommandgenerator.h>
 #include <rot_conv/rot_conv.h>
-#include <cm730/dynamixel.h>
+#include <opencr/dynamixel.h>
 
 // Namespaces
 using namespace nimbro_op_interface;
-using namespace cm730;
+using namespace opencr;
 
 //
 // DummyInterface class

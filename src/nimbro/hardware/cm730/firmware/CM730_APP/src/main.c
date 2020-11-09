@@ -61,6 +61,13 @@ int main(void)
 	// Configure and initialise the system
 	System_Configuration();
 
+	while(1){
+		LED_SetState(LED_PLAY, ON);
+		mDelay(200);
+		LED_SetState(LED_PLAY, OFF);
+		mDelay(200);
+	}
+
 	// Wait 200ms while flashing LEDs
 	for(bCount = 0; bCount < 2; bCount++)
 	{
@@ -104,6 +111,7 @@ int main(void)
 
 	// Main loop
 	Process();
+
 
 	// Enter an infinite loop
 	while(1);

@@ -2098,9 +2098,10 @@ option g_options[] = {
 
 int main(int argc, char** argv)
 {
-	const char* device = "/dev/ttyUSB0";
+	const char* device = "/dev/cm730";
 	char* execcmd = NULL;
 	unsigned int baudrate = 1000000;
+	// unsigned int baudrate = 2000000;
 	bool info = false;
 
 	while(1)

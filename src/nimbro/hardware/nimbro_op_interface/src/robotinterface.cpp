@@ -17,7 +17,7 @@
 #include <robotcontrol/robotcontrol.h>
 
 // Includes - Packages
-#include <cm730/dynamixel.h>
+#include <opencr/dynamixel.h>
 #include <rot_conv/rot_conv.h>
 #include <rc_utils/ros_time.h>
 #include <rc_utils/slopelimited.h>
@@ -79,7 +79,7 @@
 
 // Namespaces
 using namespace robotcontrol;
-using namespace cm730;
+using namespace opencr;
 
 // NimbRo-OP interface namespace
 namespace nimbro_op_interface
@@ -113,9 +113,12 @@ RobotInterface::DXLJoint::DXLJoint(const std::string& _name)
 
 // Scaling constants
 const double RobotInterface::INT_TO_VOLTS = 0.1; // Multiply a voltage value read from the CM730 by this to convert it into volts (see 'cm730/firmware/CM730_HW/src/adc.c')
-const double RobotInterface::GYRO_SCALE = (M_PI / 180) * (2 * 250) / 65536; // From control register CTRL_REG4 in "cm730/firmware/CM730_HW/src/gyro_acc.c": +-250dps is 65536 LSb
-const double RobotInterface::ACC_SCALE = (2 * (4 * 9.81)) / 65536; // From control register CTRL_REG4 in "cm730/firmware/CM730_HW/src/gyro_acc.c": +-4g is 65536 LSb
-const double RobotInterface::MAG_SCALE = 1 / 820.0; // From Config Register B in "cm730/firmware/CM730_APP/src/compass.c": 820 LSb/gauss
+// Using OpenCR board (Robotis OP3) the resolution is set to +-2000dps in 16bits format
+const double RobotInterface::GYRO_SCALE = (M_PI / 180) * (2 * 2000) / 65536; // From control register CTRL_REG4 in "cm730/firmware/CM730_HW/src/gyro_acc.c": +-250dps is 65536 LSb
+// Using OpenCR board (Robotis OP3) the resolution is set to +-2g in 16bits format
+const double RobotInterface::ACC_SCALE = (2 * (2 * 9.81)) / 65536; // From control register CTRL_REG4 in "cm730/firmware/CM730_HW/src/gyro_acc.c": +-4g is 65536 LSb
+//const double RobotInterface::MAG_SCALE = 1 / 820.0; // From Config Register B in "cm730/firmware/CM730_APP/src/compass.c": 820 LSb/gauss
+const double RobotInterface::MAG_SCALE = 10.* 4912./32760.; //16bit
 
 /**
  * RobotInterface constructor.
@@ -1237,7 +1240,7 @@ bool RobotInterface::readJointStates()
 
 			// Write either the real feedback or just the commanded values into the joint, depending on the enabled and readFeedback config parameters
 			if(joint->enabled() && joint->readFeedback())
-			{
+			{	
 				// Convert the feedback to an angular position
 				if(data.position >= 0) // Valid position data is always non-negative in terms of ticks
 					joint->feedback.pos = (data.position - joint->tickOffset()) / joint->commandGenerator->ticksPerRad();
@@ -1774,9 +1777,15 @@ int RobotInterface::readFeedbackData(bool onlyTryCM730)
 {
 	// Perform the required read
 	if(onlyTryCM730)
+	{
+		//ROS_INFO("readFeedbackData: Initiate readCM730");
 		return m_board->readCM730(&m_boardData);
+	}
 	else
+	{
+		//ROS_INFO("readFeedbackData: Initiate bulkRead");
 		return m_board->bulkRead(&m_servoData, &m_boardData);
+	}
 }
 
 /**
@@ -2042,7 +2051,7 @@ bool RobotInterface::syncWriteJointTargets(const std::vector<JointCmdData>& join
 	if(m_relaxed || m_board->isSuspended()) return true;
 
 	// Enable the torque on the servos if required
-	if(m_enableTorque && m_servos->type == DynamixelBase::X_SERVOS)
+	if(m_enableTorque && (m_servos->type == DynamixelBase::X_SERVOS || m_servos->type == DynamixelBase::MX_SERVOS))
 	{
 		// Allocate memory for the packet data and map an array of TorqueEnableSyncWriteData structs onto it
 		std::vector<uint8_t> params(m_model->numJoints() * sizeof(TorqueEnableSyncWriteData));
@@ -2068,21 +2077,28 @@ bool RobotInterface::syncWriteJointTargets(const std::vector<JointCmdData>& join
 	if(m_servos->type == DynamixelBase::MX_SERVOS)
 	{
 		// Allocate memory for the packet data and map an array of structs onto it
-		std::vector<uint8_t> params(jointCmdData.size() * sizeof(DynamixelMX::JointCmdSyncWriteData));
-		DynamixelMX::JointCmdSyncWriteData* paramData = (DynamixelMX::JointCmdSyncWriteData*) &params[0];
+		std::vector<uint8_t> paramsPG(jointCmdData.size() * sizeof(DynamixelMX::JointCmdSyncWriteDataPG));
+		std::vector<uint8_t> paramsGP(jointCmdData.size() * sizeof(DynamixelMX::JointCmdSyncWriteDataGP));
+		DynamixelMX::JointCmdSyncWriteDataPG* paramDataPG = (DynamixelMX::JointCmdSyncWriteDataPG*) &paramsPG[0];
+		DynamixelMX::JointCmdSyncWriteDataGP* paramDataGP = (DynamixelMX::JointCmdSyncWriteDataGP*) &paramsGP[0];
 
 		// Populate the sync write data as required
 		for(size_t i = 0; i < jointCmdData.size(); i++)
 		{
-			paramData[i].id = (uint8_t) jointCmdData[i].id;
-			paramData[i].p_gain = (uint8_t) jointCmdData[i].p_gain;
-			paramData[i].goal_position = (uint16_t) jointCmdData[i].goal_position;
+			paramDataPG[i].id = paramDataGP[i].id = (uint8_t) jointCmdData[i].id;
+			paramDataPG[i].p_gain = (uint16_t) jointCmdData[i].p_gain;
+			paramDataGP[i].goal_position = (uint32_t) jointCmdData[i].goal_position;
 		}
 
 		// Sync write the required joint commands
-		if(m_board->syncWrite(DynamixelMX::P_P_GAIN, sizeof(DynamixelMX::JointCmdSyncWriteData)-1, jointCmdData.size(), &params[0]) != CM730::RET_SUCCESS) // Note: Size minus 1 as the id byte doesn't count as a write data byte
+		if(m_board->syncWrite(DynamixelMX::P_POSITION_P_GAIN_L, sizeof(DynamixelMX::JointCmdSyncWriteDataPG)-1, jointCmdData.size(), &paramsPG[0]) != CM730::RET_SUCCESS) // Note: Size minus 1 as the id byte doesn't count as a write data byte
 		{
-			ROS_ERROR("SyncWrite of MX servo joint commands failed!");
+			ROS_ERROR("SyncWrite of MX servo P gain joint commands failed!");
+			return false;
+		}
+		if(m_board->syncWrite(DynamixelMX::P_GOAL_POSITION_0, sizeof(DynamixelMX::JointCmdSyncWriteDataGP)-1, jointCmdData.size(), &paramsGP[0]) != CM730::RET_SUCCESS) // Note: Size minus 1 as the id byte doesn't count as a write data byte
+		{
+			ROS_ERROR("SyncWrite of MX servo goal position joint commands failed!");
 			return false;
 		}
 	}
@@ -2161,7 +2177,7 @@ bool RobotInterface::setStiffness(float torque)
 	else
 	{
 		// Write the status return level of X servos at the beginning of fade in
-		if(m_relaxed && m_servos->type == DynamixelBase::X_SERVOS)
+		if(m_relaxed && (m_servos->type == DynamixelBase::X_SERVOS || m_servos->type == DynamixelBase::MX_SERVOS))
 		{
 			// Allocate memory for the packet data and map an array of ReturnLevelSyncWriteData structs onto it
 			std::vector<uint8_t> params(m_model->numJoints() * sizeof(ReturnLevelSyncWriteData));

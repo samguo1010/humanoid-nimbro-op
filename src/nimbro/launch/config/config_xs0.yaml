@@ -20,33 +20,34 @@ cap_gait:
           enabledSag: 0
           filterN: 35
           lat:
-            deadbandRadiusX: 0
-            gainAllLat: 1
+            deadbandRadiusX: 0.1
+            gainAllLat: 4
             gainArmAngleX: 0
             gainComShiftY: 0
             gainFootAngleX: 0
             gainHipAngleX: 0
           sag:
-            deadbandRadiusY: 0
-            gainAllSag: 1
+            deadbandRadiusY: 0.1
+            gainAllSag: 4
             gainArmAngleY: 0
             gainComShiftX: 0
             gainFootAngleY: 0
             gainHipAngleY: 0
         enable:
-          enableArmAngleX: 0
-          enableArmAngleY: 0
-          enableComShiftX: 0
-          enableComShiftY: 0
-          enableFootAngleCtsX: 0
-          enableFootAngleCtsY: 0
-          enableFootAngleX: 0
-          enableFootAngleY: 0
-          enableHipAngleX: 0
-          enableHipAngleY: 0
+          enableArmAngleX: 1
+          enableArmAngleY: 1
+          enableComShiftX: 1
+          enableComShiftY: 1
+          enableFootAngleCtsX: 1
+          enableFootAngleCtsY: 1
+          enableFootAngleX: 1
+          enableFootAngleY: 1
+          enableHipAngleX: 1
+          enableHipAngleY: 1
+          enableStepSizeX: 1
           enableTiming: 0
           enableVirtualSlope: 0
-          globalEnable: 0
+          globalEnable: 1
         feedbackBias:
           biasArmAngleX: 0
           biasArmAngleY: 0
@@ -65,21 +66,21 @@ cap_gait:
           enabledSag: 0
           filterN: 10
           lat:
-            deadbandRadiusX: 0
-            expectedXSinMag: 0
+            deadbandRadiusX: 0.1
+            expectedXSinMag: 0.1
             expectedXSinOffset: 0
             expectedXSinPhase: 0
-            gainAllLat: 1
+            gainAllLat: 2
             gainArmAngleX: 0
             gainComShiftY: 0
             gainFootAngleX: 0
             gainHipAngleX: 0
           sag:
-            deadbandRadiusY: 0
-            expectedYSinMag: 0
+            deadbandRadiusY: 0.1
+            expectedYSinMag: 0.1
             expectedYSinOffset: 0
             expectedYSinPhase: 0
-            gainAllSag: 1
+            gainAllSag: 1.9
             gainArmAngleY: 0
             gainComShiftX: 0
             gainFootAngleY: 0
@@ -87,19 +88,19 @@ cap_gait:
         gyro:
           enabledLat: 0
           enabledSag: 0
-          filterN: 35
+          filterN: 20
           lat:
             deadbandRadiusX: 0
             expectedGyroX: 0
-            gainAllLat: 1
-            gainArmAngleX: 0
+            gainAllLat: 0.5
+            gainArmAngleX: 0.25
             gainComShiftY: 0
             gainFootAngleX: 0
             gainHipAngleX: 0
           sag:
             deadbandRadiusY: 0
             expectedGyroY: 0
-            gainAllSag: 1
+            gainAllSag: 0
             gainArmAngleY: 0
             gainComShiftX: 0
             gainFootAngleY: 0
@@ -125,6 +126,24 @@ cap_gait:
             gainHipAngleY: 0
           timeToDecay: 20
           timeToFreeze: 0.1
+        stepSize:
+          gcvDeltaX:
+            deltaBuf: 0.1
+            deltaMaxAbs: 1
+            holdFilterN: 10
+          legScaleTip: 0.45
+          sagCrossingEnergy:
+            energyDeadRadiusB: 0
+            energyDeadRadiusF: 0
+            energyMinB: 0
+            energyMinF: 0
+            energyToGcvXScaler: 0
+          sagTriPendModel:
+            CsqConstBF: 10
+            CsqConstM: 10
+            crossingPhaseYB: -0.4
+            crossingPhaseYF: 0.4
+          syncFilterN: 25
         timing:
           feedDeadRadius: 0
           gainSlowDown: 5
@@ -137,14 +156,14 @@ cap_gait:
           virtualSlopeMinAngle: 0.1
           virtualSlopeOffset: 0
       cmd:
-        allowCLStepSizeX: 0
-        allowCLStepSizeY: 0
+        allowCLStepSizeX: 1
+        allowCLStepSizeY: 1
         useCLStepSize: 0
         useCLTiming: 0
-        useNonZeroZMP: 0
-        useRXFeedback: 0
-        useTXStepSize: 0
-        useTXTiming: 0
+        useNonZeroZMP: 1
+        useRXFeedback: 1
+        useTXStepSize: 1
+        useTXTiming: 1
       mg:
         LIPM:
           Alpha: 0
@@ -178,27 +197,27 @@ cap_gait:
         stepNoiseTime: 0.1
     OL:
       armMotion:
-        sagSwingMag: 0
-        sagSwingMagGradX: 0.16
+        sagSwingMag: 0.03
+        sagSwingMagGradX: 0.06
       haltPose:
-        armAngleX: 0.17
+        armAngleX: 0.25
         armAngleXBias: 0
-        armAngleY: -0.15
+        armAngleY: -0.2
         armExtension: 0.09
-        effortAnklePitch: 1
-        effortAnkleRoll: 0.65
-        effortArm: 0.2
-        effortHipPitch: 0.8
-        effortHipRoll: 0.8
+        effortAnklePitch: 1.5
+        effortAnkleRoll: 0.5
+        effortArm: 0.09999999
+        effortHipPitch: 1.5
+        effortHipRoll: 1
         effortHipYaw: 0.65
-        effortKneePitch: 0.8
-        footAngleX: -0.01
+        effortKneePitch: 1.5
+        footAngleX: 0.09999999
         footAngleXBias: 0
-        footAngleY: -0.055
-        legAngleX: 0.14
+        footAngleY: 0.065
+        legAngleX: 0.12
         legAngleXBias: 0
-        legAngleXNarrow: 0.02
-        legAngleY: 0.075
+        legAngleXNarrow: 0
+        legAngleY: 0.1
         legAngleZ: 0
         legExtension: 0.03
         legExtensionBias: 0
@@ -212,9 +231,9 @@ cap_gait:
         latLeanGradXZBwd: 0
         latLeanGradXZFwd: 0
         latPushoutMagGradX: 0
-        latPushoutMagGradY: 0.05
-        latPushoutMagGradZ: 0.05
-        latSwingMagGradY: 0.1
+        latPushoutMagGradY: 0.045
+        latPushoutMagGradZ: 0.035
+        latSwingMagGradY: 0.035
         pushHeight: 0
         pushHeightGradX: 0
         rotSwingMagGradZ: 0.15
@@ -223,9 +242,9 @@ cap_gait:
         sagLeanGradAccXFwd: 0
         sagLeanGradVelXBwd: 0.005
         sagLeanGradVelXFwd: 0.05
-        sagLeanGradVelZAbs: 0
-        sagSwingMagGradXBwd: 0.1
-        sagSwingMagGradXFwd: 0.1
+        sagLeanGradVelZAbs: 0.01
+        sagSwingMagGradXBwd: 0.09999999
+        sagSwingMagGradXFwd: 0.09999999
         stepHeight: 0.07
         stepHeightGradX: 0.025
         stepHeightGradY: 0.02
@@ -238,7 +257,7 @@ cap_gait:
         suppTransStartRatio: 1
         suppTransStopRatio: 1
         swingMinPhaseLen: 1
-        swingStartPhaseOffset: 0
+        swingStartPhaseOffset: 0.09999999
         swingStopPhaseOffset: 0.25
     gcv:
       gcvAccJerk:
@@ -303,7 +322,7 @@ cap_gait:
       footHeightHysteresis: 0.005
     robotSpec:
       armLinkLength: 0.155
-      comOffsetX: -0.015
+      comOffsetX: 0
       comOffsetZ: 0.09
       footLength: 0.21
       footOffsetX: 0.026
@@ -342,7 +361,7 @@ cap_gait:
       noLegSwing: 0
       noLegVirtual: 0
       noLegs: 0
-  plotData: 0
+  plotData: 1
   resetIntegrators: 0
   saveIFeedToHaltPose: 0
   showRxVis: 0
@@ -367,7 +386,7 @@ gait:
     gcvNormP: 2
     gcvZeroTime: 0
     minWalkingTime: 2
-  plotData: 0
+  plotData: 1
   publishOdometry: 1
   publishTransforms: 1
 game_controller:
@@ -430,7 +449,7 @@ nimbro_op_interface:
         id: 20
         invert: 1
         readFeedback: 1
-        type: MX-106
+        type: MX-64
       left_ankle_pitch:
         enabled: 1
         id: 16
@@ -446,9 +465,9 @@ nimbro_op_interface:
       left_elbow_pitch:
         enabled: 1
         id: 6
-        invert: 1
+        invert: 0
         readFeedback: 1
-        type: MX-106
+        type: MX-64
       left_hip_pitch:
         enabled: 1
         id: 12
@@ -478,19 +497,19 @@ nimbro_op_interface:
         id: 2
         invert: 0
         readFeedback: 1
-        type: MX-106
+        type: MX-64
       left_shoulder_roll:
         enabled: 1
         id: 4
-        invert: 1
+        invert: 0
         readFeedback: 1
-        type: MX-106
+        type: MX-64
       neck_yaw:
         enabled: 1
         id: 19
         invert: 0
         readFeedback: 1
-        type: MX-106
+        type: MX-64
       right_ankle_pitch:
         enabled: 1
         id: 15
@@ -506,9 +525,9 @@ nimbro_op_interface:
       right_elbow_pitch:
         enabled: 1
         id: 5
-        invert: 0
+        invert: 1
         readFeedback: 1
-        type: MX-106
+        type: MX-64
       right_hip_pitch:
         enabled: 1
         id: 11
@@ -535,37 +554,37 @@ nimbro_op_interface:
         type: MX-106
       right_shoulder_pitch:
         enabled: 1
-        id: 101
+        id: 1
         invert: 1
         readFeedback: 1
-        type: MX-106
+        type: MX-64
       right_shoulder_roll:
         enabled: 1
         id: 3
-        invert: 1
+        invert: 0
         readFeedback: 1
-        type: MX-106
+        type: MX-64
     offsets:
       head_pitch: 2048
       left_ankle_pitch: 2048
-      left_ankle_roll: 2048
+      left_ankle_roll: 2100
       left_elbow_pitch: 2048
-      left_hip_pitch: 2048
+      left_hip_pitch: 1900
       left_hip_roll: 2048
       left_hip_yaw: 2048
-      left_knee_pitch: 2048
+      left_knee_pitch: 1792
       left_shoulder_pitch: 2048
-      left_shoulder_roll: 2048
+      left_shoulder_roll: 1736
       neck_yaw: 2048
       right_ankle_pitch: 2048
       right_ankle_roll: 2048
       right_elbow_pitch: 2048
-      right_hip_pitch: 2048
+      right_hip_pitch: 2190
       right_hip_roll: 2048
       right_hip_yaw: 2048
-      right_knee_pitch: 2048
+      right_knee_pitch: 2304
       right_shoulder_pitch: 2048
-      right_shoulder_roll: 2048
+      right_shoulder_roll: 2370
   acc:
     lowPassMeanTs: 1
   attEstGyroCalib:
@@ -609,9 +628,9 @@ nimbro_op_interface:
   imuOffsets:
     calibMaxRelAccScale: 0.4
     calibMinYawAgreement: 0.8
-    gyroAccFusedYaw: 0
-    gyroAccTiltAngle: 0
-    gyroAccTiltAxisAngle: 0
+    gyroAccFusedYaw: -0.02367236
+    gyroAccTiltAngle: 0.04270098
+    gyroAccTiltAxisAngle: 2.068116
     magFlip: 0
     magFusedYaw: 0
     magTiltAngle: 0
@@ -694,14 +713,31 @@ nimbro_op_interface:
       stribeckTwo: 0.0250731405677264
       ticksPerRev: 4096
       viscuous: 0.553952330165401
+    MX-28:
+      km: 0.2
+      maxTickValue: 4095
+      minTickValue: 0
+      stribeckOne: 0
+      stribeckTwo: 0
+      ticksPerRev: 4096
+      viscuous: 0.5
+    MX-64:
+      km: 0.2
+      maxTickValue: 4095
+      minTickValue: 0
+      stribeckOne: 0
+      stribeckTwo: 0
+      ticksPerRev: 4096
+      viscuous: 0.5
   plotData: 0
   rawStateSlopeLimit: 0.02
   showButtonPresses: 0
-  showServoFailures: 0
+  showServoFailures: 1
   temperature:
     lowPassTs: 10
+  useBulkReadShortcut: 1
   useMagnetometer: 0
-  useModel: 0
+  useModel: 1
   useServos: 1
   voltage:
     lowPassTs: 15
@@ -876,7 +912,7 @@ robotcontrol:
         DGain: 0.4
         IGain: 0
         PGain: 10
-  timerDuration: 0.01
+  timerDuration: 0.04
 settings:
   general:
     isPenaltyShoot: 0

@@ -10,7 +10,7 @@
 	<buildtool_depend>catkin</buildtool_depend>
 	<build_depend>roscpp</build_depend>
 	<build_depend>robotcontrol</build_depend>
-	<build_depend>cm730</build_depend>
+	<build_depend>opencr</build_depend>
 	<build_depend>servomodel</build_depend>
 	<build_depend>plot_msgs</build_depend>
 	<build_depend>rot_conv</build_depend>
@@ -18,7 +18,7 @@
 	<build_depend>rrlogger</build_depend>
 	<run_depend>roscpp</run_depend>
 	<run_depend>robotcontrol</run_depend>
-	<run_depend>cm730</run_depend>
+	<run_depend>opencr</run_depend>
 	<run_depend>servomodel</run_depend>
 	<run_depend>plot_msgs</run_depend>
 	<run_depend>rot_conv</run_depend>

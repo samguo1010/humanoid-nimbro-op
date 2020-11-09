@@ -16,7 +16,7 @@
 #include "stm32f10x_type.h"
 
 // Set whether a 3 cell (11.1V) or 4 cell (14.8V) LiPo battery is being used
-#define USING_4CELL_BATTERY         1 // [CONFIG] Non-zero => Set battery warning levels for a 4 cell battery, Zero => Set battery warning levels for a 3 cell battery
+#define USING_4CELL_BATTERY         0 // [CONFIG] Non-zero => Set battery warning levels for a 4 cell battery, Zero => Set battery warning levels for a 3 cell battery
 #define USING_3CELL_BATTERY         (!USING_4CELL_BATTERY)
 
 // Define the battery voltage levels

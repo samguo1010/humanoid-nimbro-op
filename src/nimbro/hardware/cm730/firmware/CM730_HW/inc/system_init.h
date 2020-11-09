@@ -83,11 +83,13 @@
 #define PIN_LED6_R          GPIO_Pin_8
 #define PIN_CPU_TXD         GPIO_Pin_9
 #define PIN_CPU_RXD         GPIO_Pin_10
-#define PIN_LED6_G          GPIO_Pin_11
-#define PIN_LED6_B          GPIO_Pin_12
-#define PIN_USB_SLEEP       GPIO_Pin_13
-#define PIN_SW_MODE         GPIO_Pin_14
-#define PIN_SW_START        GPIO_Pin_15
+#define PIN_SW_MODE         GPIO_Pin_11		//berubah
+#define PIN_SW_START        GPIO_Pin_12		//berubah
+#define PIN_LED6_G          GPIO_Pin_0		//berubah
+#define PIN_LED6_B          GPIO_Pin_1		//berubah
+#define PIN_LED5_G          GPIO_Pin_2 		//berubah
+#define PIN_LED5_B          GPIO_Pin_3 		//berubah
+#define PIN_USB_SLEEP       GPIO_Pin_4 		//berubah
 
 // Port definitions
 #define PORT_ADC4           GPIOA
@@ -101,11 +103,14 @@
 #define PORT_LED6_R         GPIOA
 #define PORT_CPU_TXD        GPIOA
 #define PORT_CPU_RXD        GPIOA
-#define PORT_LED6_G         GPIOA
-#define PORT_LED6_B         GPIOA
-#define PORT_USB_SLEEP      GPIOA
 #define PORT_SW_MODE        GPIOA
 #define PORT_SW_START       GPIOA
+#define PORT_LED6_G         GPIOA
+#define PORT_LED6_B         GPIOA
+#define PORT_LED5_G         GPIOA
+#define PORT_LED5_B         GPIOA
+#define PORT_USB_SLEEP      GPIOA
+
 
 //
 // Port B
@@ -115,8 +120,8 @@
 #define PIN_ADC14           GPIO_Pin_0
 #define PIN_ADC15           GPIO_Pin_1
 #define PIN_BOOT1           GPIO_Pin_2
-#define PIN_ENABLE_ZIGBEE   GPIO_Pin_3
-#define PIN_ENABLE_TX       GPIO_Pin_4
+
+
 #define PIN_ENABLE_RX       GPIO_Pin_5
 #define PIN_DXL_TXD         GPIO_Pin_6
 #define PIN_DXL_RXD         GPIO_Pin_7
@@ -133,8 +138,6 @@
 #define PORT_ADC14          GPIOB
 #define PORT_ADC15          GPIOB
 #define PORT_BOOT1          GPIOB
-#define PORT_ENABLE_ZIGBEE  GPIOB
-#define PORT_ENABLE_TX      GPIOB
 #define PORT_ENABLE_RX      GPIOB
 #define PORT_DXL_TXD        GPIOB
 #define PORT_DXL_RXD        GPIOB
@@ -160,8 +163,8 @@
 #define PIN_ADC13           GPIO_Pin_5
 #define PIN_LED4            GPIO_Pin_6
 #define PIN_LED5_R          GPIO_Pin_7
-#define PIN_LED5_G          GPIO_Pin_8
-#define PIN_LED5_B          GPIO_Pin_9
+#define PIN_ENABLE_ZIGBEE   GPIO_Pin_8		//berubah
+#define PIN_ENABLE_TX       GPIO_Pin_9		//berubah
 #define PIN_SIG_ACC_CS      GPIO_Pin_10
 #define PIN_SIG_GYRO_CS     GPIO_Pin_11
 #define PIN_ZIGBEE_TXD      GPIO_Pin_12
@@ -178,8 +181,8 @@
 #define PORT_ADC13          GPIOC
 #define PORT_LED4           GPIOC
 #define PORT_LED5_R         GPIOC
-#define PORT_LED5_G         GPIOC
-#define PORT_LED5_B         GPIOC
+#define PORT_ENABLE_ZIGBEE  GPIOC		//berubah
+#define PORT_ENABLE_TX      GPIOC		//berubah
 #define PORT_SIG_ACC_CS     GPIOC
 #define PORT_SIG_GYRO_CS    GPIOC
 #define PORT_ZIGBEE_TXD     GPIOC
