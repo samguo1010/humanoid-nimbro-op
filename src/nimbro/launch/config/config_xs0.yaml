@@ -10,28 +10,28 @@ cap_gait:
           comShiftXBuf: 0
           comShiftXMax: 0
           comShiftXMin: 0
-          comShiftXUseLimits: 0
+          comShiftXUseLimits: 1
           comShiftYBuf: 0
           comShiftYMax: 0
           comShiftYMin: 0
           comShiftYUseLimits: 0
         dFused:
-          enabledLat: 0
-          enabledSag: 0
-          filterN: 35
+          enabledLat: 1
+          enabledSag: 1
+          filterN: 22
           lat:
-            deadbandRadiusX: 0.1
+            deadbandRadiusX: 0.96
             gainAllLat: 4
-            gainArmAngleX: 0
+            gainArmAngleX: 0.1
             gainComShiftY: 0
-            gainFootAngleX: 0
-            gainHipAngleX: 0
+            gainFootAngleX: 2.235174e-10
+            gainHipAngleX: 2.235174e-10
           sag:
-            deadbandRadiusY: 0.1
-            gainAllSag: 4
+            deadbandRadiusY: 0.92
+            gainAllSag: 3.7
             gainArmAngleY: 0
-            gainComShiftX: 0
-            gainFootAngleY: 0
+            gainComShiftX: 0.01
+            gainFootAngleY: 0.03
             gainHipAngleY: 0
         enable:
           enableArmAngleX: 1
@@ -62,11 +62,11 @@ cap_gait:
         footAngle:
           transitionPhaseLen: 0.5
         fused:
-          enabledLat: 0
-          enabledSag: 0
-          filterN: 10
+          enabledLat: 1
+          enabledSag: 1
+          filterN: 25
           lat:
-            deadbandRadiusX: 0.1
+            deadbandRadiusX: 0.25
             expectedXSinMag: 0.1
             expectedXSinOffset: 0
             expectedXSinPhase: 0
@@ -76,47 +76,47 @@ cap_gait:
             gainFootAngleX: 0
             gainHipAngleX: 0
           sag:
-            deadbandRadiusY: 0.1
+            deadbandRadiusY: 0.78
             expectedYSinMag: 0.1
             expectedYSinOffset: 0
             expectedYSinPhase: 0
-            gainAllSag: 1.9
-            gainArmAngleY: 0
-            gainComShiftX: 0
-            gainFootAngleY: 0
-            gainHipAngleY: 0
+            gainAllSag: 2.8
+            gainArmAngleY: 0.1
+            gainComShiftX: 0.06
+            gainFootAngleY: 0.02
+            gainHipAngleY: 0.02
         gyro:
-          enabledLat: 0
-          enabledSag: 0
-          filterN: 20
+          enabledLat: 1
+          enabledSag: 1
+          filterN: 15
           lat:
-            deadbandRadiusX: 0
+            deadbandRadiusX: 0.81
             expectedGyroX: 0
-            gainAllLat: 0.5
+            gainAllLat: 4
             gainArmAngleX: 0.25
             gainComShiftY: 0
             gainFootAngleX: 0
             gainHipAngleX: 0
           sag:
-            deadbandRadiusY: 0
-            expectedGyroY: 0
-            gainAllSag: 0
-            gainArmAngleY: 0
-            gainComShiftX: 0
-            gainFootAngleY: 0
-            gainHipAngleY: 0
+            deadbandRadiusY: 0.96
+            expectedGyroY: -0.03
+            gainAllSag: 4
+            gainArmAngleY: 2.2
+            gainComShiftX: 0.06
+            gainFootAngleY: 0.03
+            gainHipAngleY: 0.03
         iFused:
-          enabledLat: 0
-          enabledSag: 0
-          filterN: 1
-          halfLifeTime: 5
+          enabledLat: 1
+          enabledSag: 1
+          filterN: 22
+          halfLifeTime: 6.6
           lat:
-            gainAllLat: 0
-            gainArmAngleX: 0
-            gainComShiftY: 0
-            gainFootAngleCtsX: 0
-            gainFootAngleX: 0
-            gainHipAngleX: 0
+            gainAllLat: 0.43
+            gainArmAngleX: 1.7
+            gainComShiftY: 0.41
+            gainFootAngleCtsX: 0.76
+            gainFootAngleX: 0.42
+            gainHipAngleX: 0.02
           sag:
             gainAllSag: 0
             gainArmAngleY: 0
@@ -124,8 +124,8 @@ cap_gait:
             gainFootAngleCtsY: 0
             gainFootAngleY: 0
             gainHipAngleY: 0
-          timeToDecay: 20
-          timeToFreeze: 0.1
+          timeToDecay: 35.5
+          timeToFreeze: 0.25
         stepSize:
           gcvDeltaX:
             deltaBuf: 0.1
@@ -145,10 +145,10 @@ cap_gait:
             crossingPhaseYF: 0.4
           syncFilterN: 25
         timing:
-          feedDeadRadius: 0
-          gainSlowDown: 5
-          gainSpeedUp: 3
-          weightFactor: 1
+          feedDeadRadius: 0.95
+          gainSlowDown: 9.1
+          gainSpeedUp: 9.1
+          weightFactor: 0.65
         virtualSlope:
           virtualSlopeGainAsc: 0
           virtualSlopeGainDsc: 0
@@ -197,59 +197,59 @@ cap_gait:
         stepNoiseTime: 0.1
     OL:
       armMotion:
-        sagSwingMag: 0.03
+        sagSwingMag: 0.23
         sagSwingMagGradX: 0.06
       haltPose:
-        armAngleX: 0.25
+        armAngleX: 0.27
         armAngleXBias: 0
-        armAngleY: -0.2
-        armExtension: 0.09
+        armAngleY: -0.38
+        armExtension: 0.105
         effortAnklePitch: 1.5
-        effortAnkleRoll: 0.5
-        effortArm: 0.09999999
+        effortAnkleRoll: 1.29
+        effortArm: 0.2
         effortHipPitch: 1.5
-        effortHipRoll: 1
-        effortHipYaw: 0.65
+        effortHipRoll: 1.23
+        effortHipYaw: 0.64
         effortKneePitch: 1.5
-        footAngleX: 0.09999999
+        footAngleX: 0.11
         footAngleXBias: 0
-        footAngleY: 0.065
+        footAngleY: -0.155
         legAngleX: 0.12
         legAngleXBias: 0
         legAngleXNarrow: 0
-        legAngleY: 0.1
-        legAngleZ: 0
-        legExtension: 0.03
+        legAngleY: 0.02
+        legAngleZ: 1.117587e-10
+        legExtension: 0.07
         legExtensionBias: 0
       legMotion:
         extToAngleYGain: 0.75
         hipAngleXLegExtGain: 0.2
         latHipSwingBias: 0
-        latHipSwingMag: 0.02
-        latHipSwingMagGradX: 0
+        latHipSwingMag: 0.04
+        latHipSwingMagGradX: -1.117587e-10
         latHipSwingMagGradY: 0
         latLeanGradXZBwd: 0
         latLeanGradXZFwd: 0
-        latPushoutMagGradX: 0
-        latPushoutMagGradY: 0.045
-        latPushoutMagGradZ: 0.035
-        latSwingMagGradY: 0.035
+        latPushoutMagGradX: 0.02
+        latPushoutMagGradY: 0
+        latPushoutMagGradZ: 0
+        latSwingMagGradY: 0
         pushHeight: 0
         pushHeightGradX: 0
         rotSwingMagGradZ: 0.15
-        rotVPushoutMagGradZ: 0.05
+        rotVPushoutMagGradZ: 0
         sagLeanGradAccXBwd: 0
-        sagLeanGradAccXFwd: 0
-        sagLeanGradVelXBwd: 0.005
-        sagLeanGradVelXFwd: 0.05
-        sagLeanGradVelZAbs: 0.01
-        sagSwingMagGradXBwd: 0.09999999
-        sagSwingMagGradXFwd: 0.09999999
-        stepHeight: 0.07
-        stepHeightGradX: 0.025
-        stepHeightGradY: 0.02
+        sagLeanGradAccXFwd: 0.08
+        sagLeanGradVelXBwd: 0
+        sagLeanGradVelXFwd: 0.03
+        sagLeanGradVelZAbs: 2.235174e-10
+        sagSwingMagGradXBwd: 0.375
+        sagSwingMagGradXFwd: 0.135
+        stepHeight: 0.08
+        stepHeightGradX: 0.04
+        stepHeightGradY: 0
       phase:
-        doubleSupportPhaseLen: 0.6
+        doubleSupportPhaseLen: 0.69
         filletPushPhaseLen: 0.4
         filletStepPhaseLen: 0.4
         startBlendPhaseLen: 3.14159
@@ -367,13 +367,13 @@ cap_gait:
   showRxVis: 0
 fallProtection:
   angleToRelaxAfterLanding: 0.8
-  fallProtectionEnabled: 1
+  fallProtectionEnabled: 0
   landingEnabled: 0
   landingProneEnabled: 0
   landingSupineEnabled: 0
   maxLandingDuration: 0.3
   maxRollForLanding: 0.4
-  sideGetupRollAngle: 0.785398
+  sideGetupRollAngle: 0.7854
   sideGetupsEnabled: 0
   triggerAngle: 0.65
   triggerAngleKick: 0.65
@@ -565,26 +565,26 @@ nimbro_op_interface:
         readFeedback: 1
         type: MX-64
     offsets:
-      head_pitch: 2048
-      left_ankle_pitch: 2048
-      left_ankle_roll: 2100
+      head_pitch: 2518
+      left_ankle_pitch: 1945
+      left_ankle_roll: 2048
       left_elbow_pitch: 2048
-      left_hip_pitch: 1900
+      left_hip_pitch: 2048
       left_hip_roll: 2048
       left_hip_yaw: 2048
-      left_knee_pitch: 1792
+      left_knee_pitch: 2048
       left_shoulder_pitch: 2048
-      left_shoulder_roll: 1736
+      left_shoulder_roll: 2048
       neck_yaw: 2048
-      right_ankle_pitch: 2048
-      right_ankle_roll: 2048
+      right_ankle_pitch: 2151
+      right_ankle_roll: 2080
       right_elbow_pitch: 2048
-      right_hip_pitch: 2190
+      right_hip_pitch: 2048
       right_hip_roll: 2048
       right_hip_yaw: 2048
-      right_knee_pitch: 2304
+      right_knee_pitch: 2048
       right_shoulder_pitch: 2048
-      right_shoulder_roll: 2370
+      right_shoulder_roll: 2048
   acc:
     lowPassMeanTs: 1
   attEstGyroCalib:
@@ -912,7 +912,7 @@ robotcontrol:
         DGain: 0.4
         IGain: 0
         PGain: 10
-  timerDuration: 0.04
+  timerDuration: 0.035
 settings:
   general:
     isPenaltyShoot: 0
@@ -1020,7 +1020,7 @@ vision:
     squareSize: 58
   camera:
     aspW: 4
-    diagonalAngleView: 75
+    diagonalAngleView: 94.392
     flipHor: 0
     flipVer: 0
     freezInput: 0
@@ -1074,7 +1074,7 @@ vision:
       clearDistSizeVec: 0
       popSizeDistance: 0
     hsv:
-      active: 1
+      active: 0
       h0: 0
       h1: 0
       s0: 0
@@ -1105,7 +1105,7 @@ vision:
     calibDistSize_Ball: 0
     calibDistSize_Goal: 0
     debugBallCandidates: 0
-    debugCascade: 0
+    debugCascade: 1
     printUnderMouseInfo: 0
     rviz:
       setCalibTF: 0

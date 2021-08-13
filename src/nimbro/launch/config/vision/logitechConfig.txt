@@ -2,20 +2,18 @@
 9963777:                       Contrast:128
 9963778:                     Saturation:128
 9963788:White Balance Temperature, Auto:1
-9963795:                           Gain:0
+9963795:                           Gain:67
 9963800:           Power Line Frequency:2
-9963802:      White Balance Temperature:6430
+9963802:      White Balance Temperature:4830
 9963803:                      Sharpness:12
 9963804:         Backlight Compensation:1
 10094849:                 Exposure, Auto:1
-10094850:            Exposure (Absolute):530
-10094851:        Exposure, Auto Priority:0
-10094856:                 Pan (Absolute):0
+10094850:            Exposure (Absolute):1639
+10094851:        Exposure, Auto Priority:1
+10094856:                 Pan (Absolute):-36000
 10094857:                Tilt (Absolute):0
-10094858:               Focus (absolute):30
+10094858:               Focus (absolute):10
 10094860:                    Focus, Auto:1
 10094861:                 Zoom, Absolute:100
 168062213:                      LED1 Mode:3
 168062214:                 LED1 Frequency:0
-168062321:       Disable video processing:0
-168062322:             Raw bits per pixel:0

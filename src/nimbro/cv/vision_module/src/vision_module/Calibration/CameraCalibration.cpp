@@ -126,6 +126,7 @@ int main(int argc, char* argv[])
 				if (runCalibrationAndSave(s, imageSize, cameraMatrix,
 						distCoeffs, imagePoints))
 				{
+					ROS_INFO("MODE CAPTURING: CALIBRATED");
 					mode = CALIBRATED;
 					cv::FileStorage fs(params.configPath+params.calib->filePath(),
 							cv::FileStorage::WRITE);
@@ -136,6 +137,7 @@ int main(int argc, char* argv[])
 				else
 				{
 					mode = DETECTION;
+					ROS_INFO("MODE CAPTURING: DETECTION");
 				}
 			}
 			if (view.empty())
@@ -345,6 +347,7 @@ bool runCalibrationAndSave(Settings& s, Size imageSize, Mat& cameraMatrix,
 			imagePoints, rvecs, tvecs, reprojErrs, totalAvgErr);
 	cout << (ok ? "Calibration succeeded" : "Calibration failed")
 			<< ". avg re projection error = " << totalAvgErr;
+	ROS_INFO(ok ? "Calibration succeeded" : "Calibration failed");
 
 	return ok;
 }

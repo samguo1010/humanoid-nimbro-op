@@ -430,6 +430,7 @@ void CameraProjections::Calibrate()
 {
 	if (params.camCalibrator.IsReady())
 	{
+		ROS_INFO("cam calibrator is ready");
 		if (params.tfP->calibrateKinematicHill()
 				|| params.tfP->calibrateKinematicSimplex())
 		{

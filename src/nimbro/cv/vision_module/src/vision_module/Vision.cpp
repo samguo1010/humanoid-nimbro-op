@@ -510,6 +510,7 @@ void Vision::Process(ros::Time capTime)
 
 					if (params.ball->enable.get())
 					{
+						// ROS_INFO("ball detector enabled");
 						cpu_timer timer_ball;
 						vector<BallCircleC> ballResults = ballDetector.GetBall(
 								RawHSVImg, hullField, fieldBinaryRaw, GrayImg,
@@ -517,6 +518,7 @@ void Vision::Process(ros::Time capTime)
 								cannyImg, &guiManager, guiImg, updateGuiImg);
 						if (ballResults.size() > 0)
 						{
+							ROS_INFO("ball founded");
 							loc.setBall(ballResults[0].RealPos);
 							egoBallM.update(ballResults[0].RealPos.x,
 									ballResults[0].RealPos.y, 0);

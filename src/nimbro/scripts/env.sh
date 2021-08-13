@@ -1115,11 +1115,11 @@ function nimbro() {
 			fi
 			if [[ -z "$bott" ]]; then
 				while ! ping -c1 "$BOT" &>/dev/null; do sleep 0.5s; done
-			    ssh nimbro@"$BOT"
+			    ssh eros@"$BOT"
 			else
 				local target="$bott"
 				while ! ping -c1 "$target" &>/dev/null; do sleep 0.5s; done
-				ssh nimbro@"$target"
+				ssh eros@"$target"
 			fi
 			;;
 		servos)

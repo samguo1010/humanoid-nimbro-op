@@ -19,8 +19,8 @@ def updateCm7X0():
     toSavetty=""
     for line in result.split(os.linesep):
         serial = getCol("ATTRS{serial}=", line)
-        if len(serial)==8 and "A" in serial:
-            toSavetty='SUBSYSTEMS=="usb", ATTRS{serial}=="'+serial+'", SYMLINK+="cm730", MODE="0666", OWNER="anhar"'
+        if len(serial)==8 and "F" in serial:
+            toSavetty='SUBSYSTEMS=="usb", ATTRS{serial}=="'+serial+'", SYMLINK+="cm730", MODE="0666", OWNER="eros"'
             data.append(serial)
             print "CM730 Serial = "+serial
         
